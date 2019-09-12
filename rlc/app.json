@@ -5,7 +5,8 @@
 	"project": {
 		"shadows": true,
 		"editable": true,
-		"vr": false
+		"vr": false,
+		"debugMode": false
 	},
 	"camera": {
 		"metadata": {
@@ -14,10 +15,10 @@
 			"generator": "Object3D.toJSON"
 		},
 		"object": {
-			"uuid": "952A8CBA-D6BE-4353-B8EA-89A53B4ECF73",
+			"uuid": "6750E4AE-727E-4B3C-8D4E-CD2DD574AE4F",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [-0.2846982777118683,-9.234569553484562e-9,0.958617091178894,0,0.2539944350719452,0.9642596244812012,0.07543344795703888,0,-0.9243557453155518,0.2649591565132141,-0.2745230495929718,0,-75.32425689697266,31.290151596069336,-23.344745635986328,1],
+			"matrix": [-0.9784613847732544,-7.011193015049599e-11,-0.20642971992492676,0,-0.013971470296382904,0.9977070093154907,0.06622371822595596,0,0.2059563547372818,0.06768147647380829,-0.9762176871299744,0,16.81520652770996,17.16919708251953,-82.16873168945312,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
@@ -242,7 +243,7 @@
 		"3BC7F6A4-425D-4554-833F-67410759383A": [
 			{
 				"name": "fmBodyLoader.js",
-				"source": "female = {};\n\nvar url = \"/skinned/others/RLCFemaleRiggedBody_v06.json\";\n\nvar loader = new THREE.XHRLoader();\nloader.setResponseType( \"json\" );\nloader.load(url, function( json ){\n\tdebugMode && console.log( json );\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FMRLC_BodyMaterial\",\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(0.3,0.3,0.3),\n\t\tskinning: true, // important!\n\t});\n\n/*\n\tvar material;\n\tfor (var i = 0; i < object.materials.length; i++ ){\n\t\tobject.materials[i].skinning = true; // important!\n\t}\n\n\tif ( object.materials.length > 1 ) {\n\t\tmaterial = new THREE.MultiMaterial(object.materials);\n\t} else if ( object.materials.length == 1 ) {\n\t\tmaterial = object.materials[0];\n\t} \n*/\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.body = skinned;\n\t\n\tlocalPlayer.outfit.setGender(\"female\");\n\tlocalPlayer.outfit.add({\"body\":female.body});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n});\n\n"
+				"source": "female = {};\n\nvar textureLoader = new THREE.TextureLoader();\ntextureLoader.crossOrigin = \"anonymous\";\nvar map = textureLoader.load(\"https://i.imgur.com/GuCUGCU.jpg\");\nvar emissiveMap = textureLoader.load(\"https://i.imgur.com/VGW8BZ2.jpg\");\n\nvar url = \"/skinned/others/RLCFemaleRiggedBody_v06.json\";\nvar loader = new THREE.XHRLoader();\nloader.setResponseType( \"json\" );\nloader.load(url, function( json ){\n\tdebugMode && console.log( json );\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FMRLC_BodyMaterial\",\n\t\tmap: map,\n\t\temissiveMap: emissiveMap,\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(1,1,1),\n\t\tskinning: true, // important!\n\t});\n\n/*\n\tvar material;\n\tfor (var i = 0; i < object.materials.length; i++ ){\n\t\tobject.materials[i].skinning = true; // important!\n\t}\n\n\tif ( object.materials.length > 1 ) {\n\t\tmaterial = new THREE.MultiMaterial(object.materials);\n\t} else if ( object.materials.length == 1 ) {\n\t\tmaterial = object.materials[0];\n\t} \n*/\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.body = skinned;\n\t\n\tlocalPlayer.outfit.setGender(\"female\");\n\tlocalPlayer.outfit.add({\"body\":female.body});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n});\n\n"
 			},
 			{
 				"name": "",
