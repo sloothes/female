@@ -4,7 +4,7 @@
 	},
 	"project": {
 		"shadows": true,
-		"editable": true,
+		"editable": false,
 		"vr": false,
 		"debugMode": false
 	},
