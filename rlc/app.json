@@ -15,16 +15,16 @@
 			"generator": "Object3D.toJSON"
 		},
 		"object": {
-			"uuid": "6750E4AE-727E-4B3C-8D4E-CD2DD574AE4F",
+			"uuid": "744FB50F-EEC6-456D-93B7-C1677A43FAB7",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [-0.9784613847732544,-7.011193015049599e-11,-0.20642971992492676,0,-0.013971470296382904,0.9977070093154907,0.06622371822595596,0,0.2059563547372818,0.06768147647380829,-0.9762176871299744,0,16.81520652770996,17.16919708251953,-82.16873168945312,1],
+			"matrix": [-0.9843630194664001,-4.0181649674231323e-10,0.1761513501405716,0,0.0448991060256958,0.9669702053070068,0.2509036660194397,0,-0.1703331023454666,0.2548893094062805,-0.9518496990203857,0,-13.501816749572754,26.2330265045166,-79.5386734008789,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.0344827586206897,
+			"aspect": 1.8528735632183908,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
@@ -179,7 +179,7 @@
 			},
 			{
 				"name": "animations-loader.js",
-				"source": "Animations = {};\nMaleAnimations = {};\nFemaleAnimations = {};\n\nvar url = \"/animations/rlc/female/rlc_female_idle_sec3.0_v1.json\";\n\nvar loader = new THREE.XHRLoader();\nloader.setResponseType( \"json\" );\nloader.load(url, function( json ){\n\tdebugMode && console.log( json );\n\tFemaleAnimations.idle = json;\n});\n"
+				"source": "Animations = {};\nMaleAnimations = {};\nFemaleAnimations = {};\n\nvar idle = \"/animations/rlc/female/rlc_female_idle_sec3.0_v1.json\";\nvar walk = \"/animations/rlc/female/rlc_female_walk_sec1.0_v1.json\";\n\nvar loader = new THREE.XHRLoader();\nloader.setResponseType( \"json\" );\n\nloader.load(idle, function( json ){\n\tdebugMode && console.log( json );\n\tFemaleAnimations.idle = json;\n});\n\nloader.load(walk, function( json ){\n\tdebugMode && console.log( json );\n\tFemaleAnimations.walk = json;\n});\n"
 			}],
 		"EAB32261-6842-401B-A01B-BDD9F02445C6": [
 			{
