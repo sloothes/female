@@ -1,5 +1,11 @@
 
 *.zip
+*.obj
+*.blend
+*.blend1
 rlc/poses/*
 rlc/animations/*
 rlc/textures/*
+rlc/models/*
+rlc/RLC-Female-Skeleton-v1.json
+rlc/skinned/RLCFemaleRiggedBody_v06.json
