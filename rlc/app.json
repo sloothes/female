@@ -4,9 +4,9 @@
 	},
 	"project": {
 		"shadows": true,
-		"editable": false,
+		"editable": true,
 		"vr": false,
-		"debugMode": false
+		"debugMode": true
 	},
 	"camera": {
 		"metadata": {
