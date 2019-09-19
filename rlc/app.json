@@ -1,7 +1,5 @@
 {
-	"metadata": {
-		"type": "App"
-	},
+	"metadata": {},
 	"project": {
 		"shadows": true,
 		"editable": true,
@@ -15,16 +13,16 @@
 			"generator": "Object3D.toJSON"
 		},
 		"object": {
-			"uuid": "4EDE46B8-FE85-4246-B13C-31A638FABC4F",
+			"uuid": "4A6E8C18-5487-4DA1-8D87-8730061DCB2D",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [-0.3344551920890808,-1.4314805341086867e-8,-0.9424113035202026,0,-0.22474168241024017,0.9711486101150513,0.07975924760103226,0,0.915221631526947,0.23847505450248718,-0.3248057961463928,0,90.81005096435547,23.66195297241211,-32.22785186767578,1],
+			"matrix": [-0.9945163726806641,5.124168866998957e-10,-0.10457754880189896,0,-0.02136998623609543,0.9788987636566162,0.2032252848148346,0,0.10237086564302444,0.20434574782848358,-0.9735310673713684,0,8.952256202697754,30.279783248901367,-94.6224594116211,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.8528735632183908,
+			"aspect": 0.9471264367816092,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
@@ -41,6 +39,15 @@
 			"name": "Scene",
 			"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 			"children": [
+				{
+					"uuid": "EAC2C6A7-5B81-4516-9E4B-7E0C0F74B568",
+					"type": "DirectionalLight",
+					"name": "Default Camera Light",
+					"visible": false,
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,8.952256202697754,30.279783248901367,-94.6224594116211,1],
+					"color": 16777215,
+					"intensity": 1
+				},
 				{
 					"uuid": "E49F27D7-529D-4C7A-9F53-D3859D6F30CE",
 					"type": "Group",
@@ -2060,7 +2067,7 @@
 			},
 			{
 				"name": "sunlight.js",
-				"source": "//  Shadow Light.\n\nsunLight = new THREE.DirectionalLight( 0xdfebff, 0.75 );\nsunLight.position.set( 0, 500, 300 );\nsunLight.position.multiplyScalar( 1.5 );\nsunLight.castShadow = true;\nsunLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\nsunLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\nvar d = 30;\nsunLight.shadow.camera.left = - d;\nsunLight.shadow.camera.right = d;\nsunLight.shadow.camera.top = d;\nsunLight.shadow.camera.bottom = - d;\nsunLight.shadow.camera.far = 10000;\n\nshadowHelper = new THREE.CameraHelper(sunLight.shadow.camera);\nshadowHelper.visible = false;\n\nscene.add( sunLight, shadowHelper  );\n"
+				"source": "//  Shadow Light.\nfunction init(){\n\n\tsunLight = new THREE.DirectionalLight( 0xdfebff, 0.75 );\n\tsunLight.position.set( 0, 500, 300 );\n\tsunLight.position.multiplyScalar( 1.5 );\n\tsunLight.castShadow = true;\n\tsunLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\n\tsunLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\n\tvar d = 30;\n\tsunLight.shadow.camera.left = - d;\n\tsunLight.shadow.camera.right = d;\n\tsunLight.shadow.camera.top = d;\n\tsunLight.shadow.camera.bottom = - d;\n\tsunLight.shadow.camera.far = 10000;\n\n\tshadowHelper = new THREE.CameraHelper(sunLight.shadow.camera);\n\tshadowHelper.visible = false;\n\n\tscene.add( sunLight, shadowHelper  );\n\n}\n"
 			}],
 		"AA807597-475F-44C0-9BCF-F909388F0C98": [
 			{
@@ -2141,7 +2148,7 @@
 		"3BC7F6A4-425D-4554-833F-67410759383A": [
 			{
 				"name": "hfBodyLoader.js",
-				"source": "function init(){\n\n\tvar json = this.userData;\n\tvar url = \"/skinned/rlc/RLC_SDK_HFBody_v6.json\";\n\n\tvar textureLoader = new THREE.TextureLoader();\n\ttextureLoader.crossOrigin = \"anonymous\";\t//\timportant!\n//\tvar map = textureLoader.load(\"https://i.imgur.com/nfQa595.jpg\");\n//\tvar bumpMap = textureLoader.load(\"https://i.imgur.com/AN9igD7\");\n\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/qlaJssh.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/LXG8CUy.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/Fpr7OSs.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/nUWcc7I.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/VGW8BZ2.jpg\");\n//\tvar url = \"/skinned/rlc/RLC_SDK_HFBody_v6.json\";\n//\tvar loader = new THREE.XHRLoader();\n//\tloader.setResponseType( \"json\" );\n//\tloader.load(url, function( json ){\n//\tdebugMode && console.log( json );\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FemaleBodyMaterial\",\n\t//\tmap: map,\n\t//\tbumpMap: bumpMap,\n\t\temissiveMap: emissiveMap,\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(1,1,1),\n\t\tbumpScale: 0.5,\n\t\tskinning: true,\t//\timportant!\n\t});\n\n/*\n\tvar material;\n\tfor (var i = 0; i < object.materials.length; i++ ){\n\t\tobject.materials[i].skinning = true; // important!\n\t}\n\n\tif ( object.materials.length > 1 ) {\n\t\tmaterial = new THREE.MultiMaterial(object.materials);\n\t} else if ( object.materials.length == 1 ) {\n\t\tmaterial = object.materials[0];\n\t} \n*/\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.body = skinned;\n\t\n\tlocalPlayer.outfit.setGender(\"female\");\n\tlocalPlayer.outfit.add({\"body\":female.body});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n}\n\n"
+				"source": "function init(){\n\n\tvar json = this.userData;\n\tvar url = \"/skinned/rlc/RLC_SDK_HFBody_v6.json\";\n\n\tvar textureLoader = new THREE.TextureLoader();\n\ttextureLoader.crossOrigin = \"anonymous\";\t//\timportant!\n//\tvar map = textureLoader.load(\"https://i.imgur.com/nfQa595.jpg\");\n//\tvar bumpMap = textureLoader.load(\"https://i.imgur.com/AN9igD7\");\n\tvar diffuseMap = textureLoader.load(\"https://i.imgur.com/nfQa595.jpg\");\n\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/qlaJssh.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/LXG8CUy.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/Fpr7OSs.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/nUWcc7I.jpg\");\n//\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/VGW8BZ2.jpg\");\n//\tvar url = \"/skinned/rlc/RLC_SDK_HFBody_v6.json\";\n//\tvar loader = new THREE.XHRLoader();\n//\tloader.setResponseType( \"json\" );\n//\tloader.load(url, function( json ){\n//\tdebugMode && console.log( json );\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FemaleBodyMaterial\",\n\t\tmap: diffuseMap,\n\t//\tbumpMap: bumpMap,\n\t\temissiveMap: emissiveMap,\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(1,1,1),\n\t\tbumpScale: -0.05,\n\t\tskinning: true,\t//\timportant!\n\t});\n\n/*\n\tvar material;\n\tfor (var i = 0; i < object.materials.length; i++ ){\n\t\tobject.materials[i].skinning = true; // important!\n\t}\n\n\tif ( object.materials.length > 1 ) {\n\t\tmaterial = new THREE.MultiMaterial(object.materials);\n\t} else if ( object.materials.length == 1 ) {\n\t\tmaterial = object.materials[0];\n\t} \n*/\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.body = skinned;\n\t\n\tlocalPlayer.outfit.setGender(\"female\");\n\tlocalPlayer.outfit.add({\"body\":female.body});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n}\n\n"
 			}],
 		"E6A25D04-08FC-473B-AF43-0CE1C1E64A70": [
 			{
@@ -2176,7 +2183,7 @@
 		"677F0360-845D-4A0B-B1DF-8D33676B44EC": [
 			{
 				"name": "hfFrillydressLoader.js",
-				"source": "function init(){\n\n\tvar json = this.userData;\n\tvar url = \"/skinned/rlc/RLC_SDK_HFFrillyDress_v6.json\";\n\n\tvar textureLoader = new THREE.TextureLoader();\n\ttextureLoader.crossOrigin = \"anonymous\";\t//\timportant!\n//\tvar map = textureLoader.load(\"https://i.imgur.com/map.jpg\");\n//\tvar bumpMap = textureLoader.load(\"https://i.imgur.com/bumpMap.jpg\");\n\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/BHoTHiw.jpg\");\n\temissiveMap.repeat = {x:2, y:2}\n\temissiveMap.wrapT = emissiveMap.wrapS = 1002;\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FrillyDressMaterial\",\n\t//\tmap: map,\n\t\tbumpMap: emissiveMap,\n\t\temissiveMap: emissiveMap,\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(1,1,1),\n\t\tbumpScale: 0.1,\n\t\tskinning: true,\t//\timportant!\n\t\ttransparent: false,\n\t\tside: 2,\n\t});\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.dress = skinned;\n\t\n\tlocalPlayer.outfit.add({\"dress\":female.dress});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n}\n"
+				"source": "function init(){\n\n\tvar json = this.userData;\n\tvar url = \"/skinned/rlc/RLC_SDK_HFFrillyDress_v6.json\";\n\n\tvar textureLoader = new THREE.TextureLoader();\n\ttextureLoader.crossOrigin = \"anonymous\";\t//\timportant!\n//\tvar map = textureLoader.load(\"https://i.imgur.com/map.jpg\");\n//\tvar bumpMap = textureLoader.load(\"https://i.imgur.com/bumpMap.jpg\");\n\tvar alphaMap = textureLoader.load(\"https://i.imgur.com/kRYx1pC.jpg\");\n\tvar emissiveMap = textureLoader.load(\"https://i.imgur.com/BHoTHiw.jpg\");\n\temissiveMap.repeat = {x:2, y:2}\n\temissiveMap.wrapT = emissiveMap.wrapS = 1002;\n\n\tvar loader = new THREE.JSONLoader();\n\tvar object = loader.parse( json );\n\tdebugMode && console.log( object );\n\n\tvar material = new THREE.MeshStandardMaterial({\n\t\tname: \"FrillyDressMaterial\",\n\t\tmap: alphaMap,\n\t\tbumpMap: emissiveMap,\n\t\temissiveMap: emissiveMap,\n\t\tcolor: new THREE.Color(1,1,1),\n\t\temissive: new THREE.Color(1,1,1),\n\t\tbumpScale: 0.1,\n\t\tskinning: true,\t//\timportant!\n\t\ttransparent: true,\n\t\tside: 2,\n\t});\n\n\tvar geometry = object.geometry;\n\n\tgeometry.name = json.name;\n\tgeometry.computeFaceNormals();\n\tgeometry.computeVertexNormals();\n\tgeometry.computeBoundingBox();\n\tgeometry.computeBoundingSphere();\n\tgeometry.sourceFile = url;  // important!\n\n\tvar skinned = new THREE.SkinnedMesh( geometry, material );\n\n\tskinned.renderDepth = 1;\n\tskinned.frustumCulled = false;\n\tskinned.position.set( 0, 0, 0 );\n\tskinned.rotation.set( 0, 0, 0 );\n\tskinned.scale.set( 1, 1, 1 );\n\tskinned.castShadow = true;\n\tskinned.name = object.name;\n\n\tfemale.dress = skinned;\n\t\n\tlocalPlayer.outfit.add({\"dress\":female.dress});\n\tlocalPlayer.outfit.AnimationsHandler.refresh(); // important?\n\n}\n"
 			}]
 	}
 }
