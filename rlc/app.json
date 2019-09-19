@@ -2,9 +2,9 @@
 	"metadata": {},
 	"project": {
 		"shadows": true,
-		"editable": true,
+		"editable": false,
 		"vr": false,
-		"debugMode": false
+		"debugMode": true
 	},
 	"camera": {
 		"metadata": {
@@ -22,7 +22,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.9259259259259258,
+			"aspect": 1.8528735632183908,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
