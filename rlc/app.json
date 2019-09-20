@@ -13,10 +13,10 @@
 			"generator": "Object3D.toJSON"
 		},
 		"object": {
-			"uuid": "200E292B-CF9D-4812-B726-12BD213B7412",
+			"uuid": "BF9C97D4-1BAF-4FD0-ACFE-C267FA459FD0",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [0.5744891166687012,-4.964894273484788e-9,-0.8185117840766907,0,-0.22682595252990723,0.960835337638855,-0.15920241177082062,0,0.7864552140235901,0.27711984515190125,0.5519896149635315,0,387.9482727050781,119.92456817626953,232.5481414794922,1],
+			"matrix": [0.632497251033783,5.870400165974843e-9,-0.7745621204376221,0,-0.27432823181152344,0.9351803660392761,-0.2240128070116043,0,0.7243555188179016,0.35417184233665466,0.5914991497993469,0,379.4666748046875,138.25099182128906,251.05844116210938,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
@@ -356,6 +356,14 @@
 			"name": "Scene",
 			"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
 			"children": [
+				{
+					"uuid": "E8B21AD0-AC91-41B2-B77E-F1A69398F78F",
+					"type": "DirectionalLight",
+					"name": "Default Camera Light",
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,379.4666748046875,138.25099182128906,251.05844116210938,1],
+					"color": 16777215,
+					"intensity": 0.5
+				},
 				{
 					"uuid": "E49F27D7-529D-4C7A-9F53-D3859D6F30CE",
 					"type": "Group",
@@ -2312,7 +2320,6 @@
 					"uuid": "296FD541-3B7F-4C4B-866A-DF23995BFF2B",
 					"type": "Mesh",
 					"name": "villa-pavilion",
-					"receiveShadow": true,
 					"matrix": [10,0,0,0,0,10,0,0,0,0,10,0,0,20,0,1],
 					"geometry": "274556E7-4673-4904-85B1-2072DA20B20D",
 					"material": "8C194F0A-0D60-4D8F-8980-CE755BECC630"
@@ -2507,22 +2514,6 @@
 					"material": "89A7DD37-9C31-4205-8AE1-4780174CCA90"
 				},
 				{
-					"uuid": "50A82437-368B-45A1-A0EB-591915349871",
-					"type": "DirectionalLight",
-					"name": "DirectionalLight 1",
-					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,5,10,7.5,1],
-					"color": 16777215,
-					"intensity": 0.5
-				},
-				{
-					"uuid": "FF39E7E0-74BC-4D9D-B3E3-3EF950294433",
-					"type": "DirectionalLight",
-					"name": "DirectionalLight 1",
-					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-43.51306915283203,28.775861740112305,6.259054183959961,1],
-					"color": 16777215,
-					"intensity": 0.5
-				},
-				{
 					"uuid": "1BF6C397-33C0-435B-AE72-05E4A10FB277",
 					"type": "Mesh",
 					"name": "OctreeBox",
@@ -2645,7 +2636,7 @@
 			},
 			{
 				"name": "sunlight.js",
-				"source": "//  Shadow Light.\nfunction init(){\n\n\tsunLight = new THREE.DirectionalLight( 0xdfebff, 0.75 );\n\tsunLight.position.set( 0, 500, 300 );\n\tsunLight.position.multiplyScalar( 1.5 );\n\tsunLight.castShadow = true;\n\tsunLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\n\tsunLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\n\tvar d = 30;\n\tsunLight.shadow.camera.left = - d;\n\tsunLight.shadow.camera.right = d;\n\tsunLight.shadow.camera.top = d;\n\tsunLight.shadow.camera.bottom = - d;\n\tsunLight.shadow.camera.far = 10000;\n\n\tshadowHelper = new THREE.CameraHelper(sunLight.shadow.camera);\n\tshadowHelper.visible = false;\n\n//\tscene.add( sunLight, shadowHelper  );\n\n}\n\nfunction update( event ){\n\t\n}\n"
+				"source": "//  Shadow Light.\nfunction init(){\n\n\tsunLight = new THREE.DirectionalLight( 0xdfebff, 0.75 );\n\tsunLight.position.set( 0, 500, 300 );\n\tsunLight.position.multiplyScalar( 1.5 );\n\tsunLight.castShadow = true;\n\tsunLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\n\tsunLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\n\tvar d = 30;\n\tsunLight.shadow.camera.left = - d;\n\tsunLight.shadow.camera.right = d;\n\tsunLight.shadow.camera.top = d;\n\tsunLight.shadow.camera.bottom = - d;\n\tsunLight.shadow.camera.far = 10000;\n\n\tshadowHelper = new THREE.CameraHelper(sunLight.shadow.camera);\n\tshadowHelper.visible = false;\n\n\tscene.add( sunLight, shadowHelper  );\n\n}\n"
 			}],
 		"AA807597-475F-44C0-9BCF-F909388F0C98": [
 			{
@@ -2873,11 +2864,6 @@
 				"name": "octree-geometry.js",
 				"source": "function init(){\n\n\tvar geometry = new THREE.Geometry();\n\tgeometry.fromBufferGeometry(this.geometry);\n\tgeometry.mergeVertices ();\n\n\tvar material = this.material;\n\n\tvar mesh = new THREE.Mesh(geometry, material);\n\tmesh.position.copy(this.position); // important!\n\n\toctree.importThreeMesh( mesh );\n\tcameraControls.rigidObjects.push( this );\n\n\tdebugMode && console.log( mesh );\n\n}"
 			}],
-		"50A82437-368B-45A1-A0EB-591915349871": [
-			{
-				"name": "remove.js",
-				"source": "//\tscene.remove( this );"
-			}],
 		"CA48EA65-650E-45A6-ABAA-93D3AE8119FA": [
 			{
 				"name": "octree-geometry.js",
@@ -2917,6 +2903,11 @@
 			{
 				"name": "octree-geometry.js",
 				"source": "function init(){\n\n\tvar geometry = new THREE.Geometry();\n\tgeometry.fromBufferGeometry(this.geometry);\n\tgeometry.mergeVertices ();\n\n\tvar material = this.material;\n\n\tvar mesh = new THREE.Mesh(geometry, material);\n\tmesh.position.copy(this.position); // important!\n\n\toctree.importThreeMesh( mesh );\n//\tcameraControls.rigidObjects.push( this );\n\n\tdebugMode && console.log( mesh );\n\n}"
+			}],
+		"E8B21AD0-AC91-41B2-B77E-F1A69398F78F": [
+			{
+				"name": "remove.js",
+				"source": "function init( event ) {\n\tscene.remove(this);\n}"
 			}]
 	}
 }
