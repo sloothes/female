@@ -36,6 +36,7 @@ var APP = {
 			}
 
 			this.dom.appendChild( renderer.domElement );
+
 			this.setScene( loader.parse( json.scene ) );
 			this.setCamera( loader.parse( json.camera ) );
 

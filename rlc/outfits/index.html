@@ -84,14 +84,13 @@
 
 		<script>
 
+            var app = "RLC_SDK_FemaleOutfit_002.json";
 			var loader = new THREE.XHRLoader();
-			var app = "RLC_SDK_HF_Cowlneck_v6_f_0010cb.json";
 			loader.load( app, function ( text ) {
 
 				var json = JSON.parse( text );
                 
 				debugMode = json.project.debugMode; // important!
-				debugMode && console.log( "app:", json );
 
 				var player = new APP.Player();
 				player.load( json );
