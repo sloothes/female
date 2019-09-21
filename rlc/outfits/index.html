@@ -85,12 +85,13 @@
 		<script>
 
 			var loader = new THREE.XHRLoader();
-			loader.load( "RLC_SDK_HF_Cowlneck_v6_f_0010cb.json", function ( text ) {
+			var app = "RLC_SDK_HF_Cowlneck_v6_f_0010cb.json";
+			loader.load( app, function ( text ) {
 
 				var json = JSON.parse( text );
                 
 				debugMode = json.project.debugMode; // important!
-				debugMode && console.log( json );
+				debugMode && console.log( "app:", json );
 
 				var player = new APP.Player();
 				player.load( json );
@@ -107,7 +108,7 @@
 					button.addEventListener( 'click', function ( event ) {
 
 						var url = location.href.split( "/" ).slice( 0, - 1 ).join( "/" );
-						window.open( "https://sloothes.com/three/r78/editor/#file=" + url + "/app.json" );
+						window.open( "https://sloothes.com/three/r78/editor/#file=" + url + "/" + app );
 
 					}, false );
 
