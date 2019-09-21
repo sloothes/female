@@ -168,6 +168,8 @@
                             player.dom.children[0].remove(); // important!
                         }
 
+                        player.stop(); // important!
+
                         player.load( json );
                         player.setSize( window.innerWidth, window.innerHeight );
                         player.play();
