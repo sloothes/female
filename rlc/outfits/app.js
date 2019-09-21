@@ -15,7 +15,8 @@ var APP = {
 
 		var events = {};
 
-		this.dom = document.getElementById( "scene-container" );
+		this.dom = document.createElement( "div" );
+        this.dom.id = "player";
 
 		this.width = 500;
 		this.height = 500;
@@ -36,7 +37,6 @@ var APP = {
 			}
 
 			this.dom.appendChild( renderer.domElement );
-
 			this.setScene( loader.parse( json.scene ) );
 			this.setCamera( loader.parse( json.camera ) );
 
