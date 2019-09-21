@@ -75,8 +75,6 @@
 
 	<body ontouchstart="">
 
-        <!-- div id="scene-container"></div -->
-
         <script src="/js/signals.min.js"></script>
 		<script src="/three/three.min.js"></script>
 		<script src="/three/EditorControls.js"></script>
@@ -89,7 +87,6 @@
 
             var app = "RLC_SDK_FemaleOutfit_003.json";
 			var loader = new THREE.XHRLoader();
-        //  var container = document.getElementById( "player" );
 
 			loader.load( app, function ( text ) {
 
@@ -100,8 +97,6 @@
 				player.load( json );
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
-
-			//	document.body.appendChild( player.dom );
 
                 var button = document.createElement( "div" );
                 button.id = "edit";
@@ -120,7 +115,7 @@
 
                 var droplist = document.createElement( "select" );
                 droplist.id = "application-select";
-                droplist.style.cssText = "position:fixed;top:20px;right:20px;";
+                droplist.style.cssText = "position:fixed;top:20px;right:20px;padding:6px 12px;";
 
                 var applications = [
 
@@ -131,17 +126,16 @@
 
                 ];
 
-                applications.forEach(function(app, i){
+                applications.forEach(function(app, index){
 
                     var option = document.createElement( "option" );
+                    var title = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
                     option.value = app; 
-                    option.textContent = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
+                    option.textContent = title;
+                    droplist.style.padding = "6px 12px";
                     droplist.appendChild( option );
 
                 });
-
-                droplist.value = app;
-                document.body.appendChild( droplist );
 
                 droplist.addEventListener("change", function(){
 
@@ -155,17 +149,15 @@
                             player.dom.children[0].remove(); // important!
                         }
 
-                    //  Remove player dom.
-                    //  player.dom.remove(); // important!
-
                         player.load( json );
                         player.setSize( window.innerWidth, window.innerHeight );
                         player.play();
 
-                    //  document.body.appendChild( player.dom );
-
                     });
                 });
+
+                droplist.value = app;
+                document.body.appendChild( droplist );
 
             //
 
