@@ -84,8 +84,33 @@
 
 		<script>
 
+            var droplist = document.createElement( "select" );
+            droplist.id = "application-select";
+            droplist.style.cssText = "position:fixed;top:20px;right:20px;";
+
             var app = "RLC_SDK_FemaleOutfit_003.json";
 			var loader = new THREE.XHRLoader();
+
+            var container = document.getElementById( "scene-container" );
+
+            var applications = [
+
+                "RLC_SDK_FemaleOutfit_001.json",
+                "RLC_SDK_FemaleOutfit_002.json",
+                "RLC_SDK_FemaleOutfit_003.json",
+                "RLC_SDK_FemaleOutfit_004.json",
+
+            ];
+
+            applications.forEach(function(app, i){
+
+                var option = document.createElement( "option" );
+                option.value = app; 
+                option.textContent = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
+                droplist.appendChild( option );
+
+            });
+
 			loader.load( app, function ( text ) {
 
 				var json = JSON.parse( text );
@@ -97,58 +122,41 @@
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
 
-				document.body.appendChild( player.dom );
-
-				if ( json.project.editable === true ) {
-
-					var button = document.createElement( "div" );
-					button.id = "edit";
-					button.textContent = "OPEN IN EDITOR";
-					button.addEventListener( 'click', function ( event ) {
-
-						var url = location.href.split( "/" ).slice( 0, - 1 ).join( "/" );
-						window.open( "https://sloothes.com/three/r78/editor/#file=" + url + "/" + app );
-
-					}, false );
-
-					document.body.appendChild( button );
-				}
+				container.appendChild( player.dom );
 
             //
 
-                var container = document.getElementById("scene-container");
-                var droplist = document.createElement( "select" );
-                droplist.id = "application-select";
-                droplist.style.cssText = "position:fixed;top:20px;right:20px;";
+                var button = document.createElement( "div" );
+                button.id = "edit";
+                button.textContent = "OPEN IN EDITOR";
+                button.addEventListener( "click", function ( event ) {
+
+                    var app = droplist.value;
+                    var url = location.href.split( "/" ).slice( 0, - 1 ).join( "/" );
+                    window.open( "https://sloothes.com/three/r78/editor/#file=" + url + "/" + app );
+
+                }, false );
+
+                document.body.appendChild( button );
+
+                droplist.value = app;
+                document.body.appendChild( droplist );
+
                 droplist.addEventListener("change", function(){
                     loader.load( droplist.value, function ( text ) {
 
                         var json = JSON.parse( text );
-                        debugMode = json.project.debugMode; // important!
+
+                    //  player.dom.remove(); // important!
+
                         player.load( json );
+                        player.setSize( window.innerWidth, window.innerHeight );
                         player.play();
+
+                    //  container.appendChild( player.dom );
 
                     });
                 });
-
-                var applications = [
-                    "RLC_SDK_FemaleOutfit_001.json",
-                    "RLC_SDK_FemaleOutfit_002.json",
-                    "RLC_SDK_FemaleOutfit_003.json",
-                    "RLC_SDK_FemaleOutfit_004.json",
-                ];
-
-                applications.forEach(function(app, i){
-
-                    var option = document.createElement( "option" );
-                    option.value = app; 
-                    option.textContent = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
-                    droplist.appendChild( option );
-
-                });
-
-                droplist.value = app;
-                container.appendChild( droplist );
 
             //
 
