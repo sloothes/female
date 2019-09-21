@@ -139,11 +139,11 @@
             (function(){
                 
                 var container = document.getElementById("scene-container");
-                var appDroplist = document.createElement( "select" );
-                appDroplist.id = "application-select";
-                appDroplist.style.cssText = "position:fixed;top:20px;right:20px;";
-                appDroplist.addEventListener("change", function(){
-                    loader.load( appDroplist.value, function ( text ) {
+                var droplist = document.createElement( "select" );
+                droplist.id = "application-select";
+                droplist.style.cssText = "position:fixed;top:20px;right:20px;";
+                droplist.addEventListener("change", function(){
+                    loader.load( droplist.value, function ( text ) {
 
                         var json = JSON.parse( text );
                         debugMode = json.project.debugMode; // important!
@@ -153,8 +153,24 @@
                     });
                 });
 
-                
-                container.appendChild( appDroplist );
+                var applications = [
+                    "RLC_SDK_FemaleOutfit_001.json",
+                    "RLC_SDK_FemaleOutfit_002.json",
+                    "RLC_SDK_FemaleOutfit_003.json",
+                    "RLC_SDK_FemaleOutfit_004.json",
+                ];
+
+                applications.forEach(function(app, i){
+
+                    var option = document.createElement( "option" );
+                    option.value = app; 
+                    option.textContent = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
+                    droplist.appendChild( option );
+
+                });
+
+                container.appendChild( droplist );
+
             })();
 
 		</script>
