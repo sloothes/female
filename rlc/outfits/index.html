@@ -106,12 +106,14 @@
 			loader.load( app, function ( text ) {
 
 				var json = JSON.parse( text );
-                
+
 				debugMode = json.project.debugMode; // important!
 
 				player.load( json );
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
+
+                bootbox.hideAll();
 
                 var button = document.createElement( "div" );
                 button.id = "edit";
@@ -161,7 +163,7 @@
 
                         var json = JSON.parse( text );
 
-                    //  Remove player canvas.
+                    //  Remove player old renderer.
                         while (player.dom.children.length){
                             player.dom.children[0].remove(); // important!
                         }
@@ -183,8 +185,6 @@
 				window.addEventListener( "resize", function () {
 					player.setSize( window.innerWidth, window.innerHeight );
 				});
-
-                bootbox.hideAll();
 
 			});
 
