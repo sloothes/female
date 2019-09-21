@@ -84,8 +84,8 @@
 
 		<script>
 
-
             var app = "RLC_SDK_FemaleOutfit_003.json";
+            var player = new APP.Player();
 			var loader = new THREE.XHRLoader();
             var container = document.getElementById( "scene-container" );
 
@@ -95,7 +95,6 @@
                 
 				debugMode = json.project.debugMode; // important!
 
-				var player = new APP.Player();
 				player.load( json );
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
@@ -145,12 +144,13 @@
                 document.body.appendChild( droplist );
 
                 droplist.addEventListener("change", function(){
+
+                    player.dom.remove(); // important!
+
                     var app = droplist.value;
                     loader.load( app, function ( text ) {
 
                         var json = JSON.parse( text );
-
-                        player.dom.remove(); // important!
 
                         player.load( json );
                         player.setSize( window.innerWidth, window.innerHeight );
