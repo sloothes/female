@@ -90,6 +90,7 @@
 				var json = JSON.parse( text );
                 
 				debugMode = json.project.debugMode; // important!
+				debugMode && console.log( json );
 
 				var player = new APP.Player();
 				player.load( json );
