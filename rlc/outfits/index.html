@@ -32,6 +32,15 @@
                 opacity: 1;
             }
 
+            .middle > * {
+                margin:auto;
+                position:absolute;
+                top:0; bottom:0;
+                left:0; right:0;
+                height:fit-content;
+                width:fit-content;
+            }
+
 		</style>
 
         <style class="joystick-controls"> 
@@ -68,19 +77,22 @@
             } 
         </style>
 
-        <script src="/socketcluster.js"></script>
-        <script src="/sc-codec-min-bin.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootbox.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/signals.min.js"></script>
+		<script src="/three/three.min.js"></script>
+		<script src="/three/EditorControls.js"></script>
 
 	</head>
 
 	<body ontouchstart="">
 
-        <script src="/js/signals.min.js"></script>
-		<script src="/three/three.min.js"></script>
-		<script src="/three/EditorControls.js"></script>
 		<script src="app.js"></script>
 
 		<script>
+
+            loading();
 
             var player = new APP.Player();
             document.body.appendChild( player.dom );
@@ -139,6 +151,8 @@
 
                 droplist.addEventListener("change", function(){
 
+                    loading();
+
                     var app = droplist.value;
                     loader.load( app, function ( text ) {
 
@@ -153,6 +167,8 @@
                         player.setSize( window.innerWidth, window.innerHeight );
                         player.play();
 
+                        bootbox.hideAll();
+
                     });
                 });
 
@@ -165,7 +181,31 @@
 					player.setSize( window.innerWidth, window.innerHeight );
 				});
 
+                bootbox.hideAll();
+
 			});
+
+            function loading(){
+
+            //  Loading bar.
+
+                var dialog = window.bootbox.dialog({
+                    message: '<div class="text-center">'
+                    + '<span style="width:300px;font-weight:bold;'
+                    + 'color:#fff;">Loading...<br>Please wait... '
+                    + '(heavy duty)</span></div>',
+                    buttons: false,
+                    closeButton: false,
+                    className: "middle",
+                });
+
+                $( dialog.modal() ).find(".modal-content").css({
+                    "border"    : "none",
+                    "box-shadow": "none",
+                    "background": "none",
+                });
+
+            }
 
         /*
             (function(){
