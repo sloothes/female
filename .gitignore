@@ -6,7 +6,6 @@
 rlc/poses/*
 rlc/models/*
 rlc/skinned/*
-rlc/outfits/*
 rlc/textures/*
 rlc/snapshots/*
 rlc/animations/*
@@ -20,6 +19,7 @@ rlc/RLC_SDK_HFFrillyDress_v6.json
 rlc/RLC_SDK_HFFrillySkirt0_v6.json
 rlc/RLC_SDK_HFFrillySkirt1_v6.json
 rlc/RLC_SDK_HFFrillySkirt2_v6.json
+rlc/outfits/RLC_SDK_HFFrillyDress_v6/*
 rlc/skinned/RLCFemaleRiggedBody_v06.json
 rlc/export-app-test-v1.3.5.json
 RLCFemaleDeveloperKit_v0.1.json
