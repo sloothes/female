@@ -7,6 +7,9 @@
 
 		<title>Outfit preview (demo)</title>
 
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootbox-dialoges.css">
+
 		<style>
 
             body {
@@ -127,7 +130,8 @@
 
                 var droplist = document.createElement( "select" );
                 droplist.id = "application-select";
-                droplist.style.cssText = "position:fixed;top:20px;right:20px;padding:6px 12px;";
+                droplist.classList.add("form-control");
+                droplist.style.cssText = "position:fixed;top:20px;right:20px;width:fit-content;";
 
                 var applications = [
 
@@ -144,7 +148,6 @@
                     var title = app.replace("RLC_SDK_", "").replace("_00", " ").replace(".json", "");
                     option.value = app; 
                     option.textContent = title;
-                    option.style.padding = "6px 12px";
                     droplist.appendChild( option );
 
                 });
