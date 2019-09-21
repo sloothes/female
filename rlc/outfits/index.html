@@ -145,12 +145,18 @@
 
                 droplist.addEventListener("change", function(){
 
-                    player.dom.remove(); // important!
-
                     var app = droplist.value;
                     loader.load( app, function ( text ) {
 
                         var json = JSON.parse( text );
+
+                    //  Remove player canvas.
+                        while (player.dom.children.length){
+                            player.dom.children[0].remove(); // important!
+                        }
+
+                    //  Remove player dom.
+                        player.dom.remove(); // important!
 
                         player.load( json );
                         player.setSize( window.innerWidth, window.innerHeight );
