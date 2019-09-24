@@ -36,9 +36,20 @@ var APP = {
 			}
 
 			this.dom.appendChild( renderer.domElement );
-
 			this.setScene( loader.parse( json.scene ) );
 			this.setCamera( loader.parse( json.camera ) );
+
+		//  Joystick controls.
+
+			var joysticControls1 = document.createElement( "div" );
+			var joysticControls2 = document.createElement( "div" );
+			joysticControls1.id = "joystick-controls-1";
+			joysticControls2.id = "joystick-controls-2";
+			joysticControls1.classList.add("joystick-controls");
+			joysticControls2.classList.add("joystick-controls");
+
+			this.dom.appendChild( joysticControls1 );
+			this.dom.appendChild( joysticControls2 );
 
 			events = {
 				init: [],
