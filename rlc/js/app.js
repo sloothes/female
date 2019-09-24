@@ -15,7 +15,7 @@ var APP = {
 
 		var events = {};
 
-		this.dom = document.getElementById( "scene-container" );
+		this.dom = document.createElement( "div" );
 
 		this.width = 500;
 		this.height = 500;
