@@ -17,7 +17,8 @@ var APP = {
 
 		this.dom = document.createElement( "div" );
 
-	//  Joystick controls (must exist in document "before" json load).
+/*
+	//  Joystick controls must exist in document "before" json load.
 
 		var joysticControls1 = document.createElement( "div" );
 		var joysticControls2 = document.createElement( "div" );
@@ -25,6 +26,7 @@ var APP = {
 		joysticControls2.id = "joystick-controls-2";
 		joysticControls1.classList.add("joystick-controls");
 		joysticControls2.classList.add("joystick-controls");
+*/
 
 		this.width = 500;
 		this.height = 500;
@@ -45,9 +47,8 @@ var APP = {
 			}
 
 			this.dom.appendChild( renderer.domElement );
-            this.dom.appendChild( joysticControls1 );
-            this.dom.appendChild( joysticControls2 );
-
+		//	this.dom.appendChild( joysticControls1 );
+		//	this.dom.appendChild( joysticControls2 );
 			this.setScene( loader.parse( json.scene ) );
 			this.setCamera( loader.parse( json.camera ) );
 
