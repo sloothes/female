@@ -26,9 +26,6 @@ var APP = {
 		joysticControls1.classList.add("joystick-controls");
 		joysticControls2.classList.add("joystick-controls");
 
-		this.dom.appendChild( joysticControls1 );
-		this.dom.appendChild( joysticControls2 );
-
 		this.width = 500;
 		this.height = 500;
 
@@ -48,6 +45,9 @@ var APP = {
 			}
 
 			this.dom.appendChild( renderer.domElement );
+            this.dom.appendChild( joysticControls1 );
+            this.dom.appendChild( joysticControls2 );
+
 			this.setScene( loader.parse( json.scene ) );
 			this.setCamera( loader.parse( json.camera ) );
 
