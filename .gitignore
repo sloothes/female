@@ -3,6 +3,7 @@
 *.obj
 *.blend
 *.blend1
+rlc/apps/*
 rlc/poses/*
 rlc/models/*
 rlc/skinned/*
